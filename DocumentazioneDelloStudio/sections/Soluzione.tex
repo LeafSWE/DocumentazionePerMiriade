@@ -2,11 +2,19 @@
 
 \begin{document}
 \section{Soluzione proposta}
-	La soluzione proposta prevede quindi di calcolare un percorso all'interno del grafo che rappresenta l'edificio. Essendo gli archi di tale grafo pesati è possibile calcolare tali pesi dinamicamente sulla base delle preferenze espresse da un utente. Ciò viene fatto semplicemente sommando una costante al peso degli archi che l'utente non vorrebbe incontrare nel suo percorso. Il peso degli archi del grafo dell'edificio dipende fortemente dalla natura dell'arco stesso. Per archi normali è rappresentato dalla sua lunghezza (approssimativa) in metri, mentre per scale e ascensori è regolato da funzioni dipendenti dal numero di piani che l'arco attraversa.\\
-	Il calcolo di tali pesi sfrutta due funzioni esponenziali simmetriche rispetto l'asse y. L'idea è che al crescere dei piani il peso delle scale aumenti, mentre quello dell'ascensore diminuisca. \\
-	fe(x) = e^(x-k)}\\
-	fs(x) = e^(-(x-k))}\\
-	Dove \textit{fe(x)} rappresenta la funzione per gli ascensori, \textit{fs(x)} per le scale, x è la differenza di piani che l'arco attraversa e dove k è una costante tendente al numero di piani per cui prendere le scale e gli ascensori hanno lo stesso peso. 
-	Noi abbiamo preso un numero di poco inferiore a 2 cioè k = 1.9999. Ciò vuol dire che per noi il numero di piani da attraversare prendendo scale o ascensori è 2, con preferenza per l'ascensore per arrivare al secondo piano.
-	Sono state scelte tali funzioni per avere archi tutti con peso positivo ed avere la possibilità di utilizzare Dijktra.
+	\subsubsection{Algoritmo}
+		La soluzione proposta prevede quindi di calcolare un percorso all'interno del grafo che rappresenta l'edificio. Essendo gli archi di tale grafo pesati è possibile calcolare tali pesi dinamicamente sulla base delle preferenze espresse da un utente. Ciò viene fatto semplicemente sommando una costante al peso degli archi che l'utente non vorrebbe incontrare nel suo percorso. Il peso degli archi del grafo dell'edificio dipende fortemente dalla natura dell'arco stesso. Per archi normali è rappresentato dalla sua lunghezza (approssimativa) in metri, mentre per scale e ascensori è regolato da funzioni dipendenti dal numero di piani che l'arco attraversa.\\
+		Il calcolo di tali pesi sfrutta due funzioni esponenziali simmetriche rispetto l'asse y. L'idea è che al crescere dei piani il peso delle scale aumenti, mentre quello dell'ascensore diminuisca. \\
+		\[
+			fe(x) = e^{x-k}
+		\]
+		\[
+			fs(x) = e^{-(x-k)}
+		\]
+		Dove \textit{fe(x)} rappresenta la funzione per gli ascensori, \textit{fs(x)} per le scale, x è la differenza di piani che l'arco attraversa e dove k è una costante tendente al numero di piani per cui prendere le scale e gli ascensori hanno lo stesso peso. 
+		Noi abbiamo preso un numero di poco inferiore a 2 cioè k = 1.9999. Ciò vuol dire che per noi il numero di piani da attraversare prendendo scale o ascensori è 2, con preferenza per l'ascensore per arrivare al secondo piano.
+		Tale scelta di funzioni permette di avere dei pesi tutti positivi e quindi dà la possibilità di utilizzare l'algoritmo di Dijkstra per calcolare il percorso minimo all'interno del grafo.
+	\subsubsection{L'interfaccia}
+		Si è scelto di non implementare una UI simile a Google Maps dove viene mostrata la cartina poichè la precisione calcolabile facendo triangolazione con il segnale dei beacon non è sufficiente e quindi si è pensato di cercare strade alternative che potessero far orientare in modo alternativo. \\
+		L'interfaccia per dare informazioni all'utente è simile invece ad una ``vista'' di Google Maps, quella relativa alla lista delle indicazioni. Tale scelta è dettata dal fatto che un utente può essere abbastanza abituato all'utilizzo di tale strumento e quindi può utilizzare facilmente l'applicazione fin da subito. 
 \end{document}
