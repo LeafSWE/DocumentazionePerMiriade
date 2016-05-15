@@ -1,0 +1,28 @@
+\documentclass[../DocumentazioneDelloStudio.tex]{subfiles}
+
+\begin{document}
+\section{Impianto}
+	\subsection{Area indoor}
+	L'area indoor scelta per la sperimentazione del software sviluppato è l'edificio della Torre Archimede. Tale scelta è stata fatta poichè è l'edificio in cui si tengono i corsi del terzo anno della laurea di informatica e quindi il luogo più comodo dove effettuare sperimentazioni.
+
+	\subsection{Posizionamento dei beacon}
+	Durante il posizionamento e la configurazione dei beacon sono state seguite alcune \textbf{best pratices}, di seguito riportate:
+	\begin{itemize}
+		\item posizionare il più possibile i beacon sopra il gli ostacoli(quali persone o oggetti). Il luogo migliore risulta essere il soffitto;
+		\item posizionare i beacon in modo tale che esista un passaggio rettilineo tra il luogo in cui è posizionato un certo beacon e il luogo in cui invece è posizionato un altro beacon;
+		\item impostare la frequenza di trasmissione in modo tale ci sia meno interferenza possibile tra i segnali di due beacon differenti. Ciò implica di impostare una potenza di trasmissione abbastanza ridotta ma permette di poter fare delle assunzioni sul luogo in cui un dispositivo si trova nel caso in cui venga rilevato il segnale di un certo beacon.
+	\end{itemize}
+
+	\subsection{Utilizzo degli identificativi dei beacon}
+	Ai tre identificativi di un beacon sono stati assegnati tre significati differenti:
+	\begin{itemize}
+		\item \textbf{UUID}: è utilizzato per identificare i beacon che devono essere rilevati dal nostro applicativo, quindi è stato fissato un UUID unico per tutti i beacon utilizzati, filtrando in questo modo eventuali altri beacon;
+		\item \textbf{Major}: è utilizzato per identificare tutti i beacon di uno stesso edificio. È stato quindi impostato lo stesso Major pre tutti i beacon utilizzati nella Torre Archimede. Ciò è necessario soprattutto per l'associazione con le mappe degli edifici stessi. Difatti ogni mappa è identificata dal Major dell'edificio che rappresenta e, in questo modo, qualsiasi sia il beacon rilevato in un certo edificio, si può facilmente identificare l'edificio di appartenenza;
+		\item \textbf{Minor} è utilizzato per identificare uno specifico beacon in un certo edificio. Tale identificativo è stato diviso in due parti:
+		\begin{itemize}
+			\item le prime due cifre sono utilizzate per identificare il piano di appartenenza di uno specifico beacon. È possibile ricavare il piano quindi effettuando la divisione intera tra il numero che rappresenta il Minor e 10000;
+			\item le ultime tre cifre sono utilizzate per identificare uno specifico beacon. È possibile ricavare il piano quindi calcolando il resto della divisione intera tra il numero che rappresenta il Minor e 10000.
+		\end{itemize}
+		Tale scelta non permette di mappare edifici con più di 65 piani e 535 beacon per piano. 
+	\end{itemize}
+\end{document}
